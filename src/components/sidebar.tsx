@@ -5,6 +5,8 @@ import { useAuthStore } from "../store/auth";
 export default function Sidebar() {
   const location = useLocation();
 
+  const { isAuth, logout } = useAuthStore();
+
   const getLinkClass = (path: string) => {
     return location.pathname === path
       ? "flex items-center gap-3 rounded-lg bg-muted px-3 py-2 text-primary transition-all hover:text-primary"
@@ -16,7 +18,7 @@ export default function Sidebar() {
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
           <Link to="/" className="flex items-center gap-2 font-semibold">
-            <span className="">Zustack</span>
+            <span className="">ai.zustack</span>
           </Link>
         </div>
         <div className="flex-1">
@@ -37,15 +39,17 @@ export default function Sidebar() {
               Tutorial
             </Link>
 
+            {isAuth && (
               <button
-            onClick={() => {
-              useAuthStore.getState().logout();
-            }}
-                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+              onClick={() => {
+                logout();
+              }}
+              className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
               >
               <LogOutIcon className="w-4 h-4"/>
-                Logout
+              Logout
               </button>
+            )}
 
           </nav>
         </div>

@@ -6,6 +6,7 @@ import { useInfiniteQuery } from "@tanstack/react-query";
 import { Search } from "lucide-react";
 import { useEffect, useState, ChangeEvent } from "react";
 import { useInView } from "react-intersection-observer";
+import { Link } from "react-router-dom";
 
 export default function Discover() {
   const [searchInput, setSearchInput] = useState("");
@@ -53,21 +54,21 @@ export default function Discover() {
     setSearchInput(value);
   };
 
-  if (data?.pages[0].data == null) {
+  if (data?.pages[0].data == null && !isFetching) {
     return (
-    <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
-      <div className="flex flex-col items-center">
-        <h1 className="text-2lg font-semibold text-zinc-300 md:text-4xl xl:text-6xl my-4">
-          Discover
-        </h1>
-      </div>
-
-      <ScrollArea className="h-full max-h-[calc(88vh-4rem)] w-full p-4">
-        <p className="text-center text-muted-foreground">No data to display.</p>
-      </ScrollArea>
-    </main>
-
-    )
+      <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+        <div className="flex flex-col items-center">
+          <h1 className="text-2lg font-semibold text-zinc-300 md:text-4xl xl:text-6xl my-4">
+            Discover
+          </h1>
+        </div>
+        <ScrollArea className="h-full max-h-[calc(88vh-4rem)] w-full p-4">
+          <p className="text-center text-muted-foreground">
+            No data to display.
+          </p>
+        </ScrollArea>
+      </main>
+    );
   }
 
   return (
@@ -101,12 +102,14 @@ export default function Discover() {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
               {data.pages.flatMap((page) =>
                 page.data.map((c: any) => (
-                  <div className="rounded-lg hover:bg-zinc-500/50 transition-colors duration-300 p-1">
+                  <Link 
+                  to={`/image/${c.id}`}
+                  className="hover:cursor-pointer rounded-lg hover:bg-zinc-500/50 transition-colors duration-300 p-1">
                     <img
                       className="rounded-lg"
                       src={`${import.meta.env.VITE_BACKEND_URL}${c.path}`}
                     />
-                  </div>
+                  </Link>
                 ))
               )}
             </div>

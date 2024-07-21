@@ -34,3 +34,8 @@ export const getUserImages = async ({ pageParam = 0 }): Promise<ImageResponse> =
   const response = await authAxios.get<ImageResponse>(`/get/user/images?cursor=${pageParam}`);
   return response.data;
 };
+
+export const getImage = async (id: string) => {
+  const response = await authAxios.get(`/image/${id}`);
+  return response.data;
+}

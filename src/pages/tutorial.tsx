@@ -1,12 +1,6 @@
 import { ScrollArea } from "@/components/ui/scroll-area";
-import { Input } from "@/components/ui/input";
-import { CornerDownLeft, Search } from "lucide-react";
 
 export default function Tutorial() {
-  const handleSubmit = (e: any) => {
-    e.preventDefault();
-    alert("Submit");
-  };
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex flex-col items-center">
