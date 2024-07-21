@@ -53,6 +53,23 @@ export default function Discover() {
     setSearchInput(value);
   };
 
+  if (data?.pages[0].data == null) {
+    return (
+    <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
+      <div className="flex flex-col items-center">
+        <h1 className="text-2lg font-semibold text-zinc-300 md:text-4xl xl:text-6xl my-4">
+          Discover
+        </h1>
+      </div>
+
+      <ScrollArea className="h-full max-h-[calc(88vh-4rem)] w-full p-4">
+        <p className="text-center text-muted-foreground">No data to display.</p>
+      </ScrollArea>
+    </main>
+
+    )
+  }
+
   return (
     <main className="flex flex-1 flex-col gap-4 p-4 lg:gap-6 lg:p-6">
       <div className="flex flex-col items-center">
@@ -71,7 +88,7 @@ export default function Discover() {
         </div>
       </div>
 
-      <ScrollArea className="h-full max-h-[calc(88vh-4rem)] w-full p-4">
+      <ScrollArea className="h-full max-h-[calc(80vh-4rem)] w-full p-4">
         {error && <p>Error: No data to display.</p>}
         {status === "pending" ? (
           <div className="flex justify-center items-center mt-[100px]">
@@ -81,7 +98,7 @@ export default function Discover() {
           <p>Error: No data to display.</p>
         ) : (
           <>
-            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 2xl:grid-cols-7">
+            <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
               {data.pages.flatMap((page) =>
                 page.data.map((c: any) => (
                   <div className="rounded-lg hover:bg-zinc-500/50 transition-colors duration-300 p-1">

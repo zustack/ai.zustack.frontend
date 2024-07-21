@@ -1,5 +1,6 @@
-import { Home as H, Package, ShoppingCart } from "lucide-react";
+import { Home as H, LogOutIcon, Package, ShoppingCart } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
+import { useAuthStore } from "../store/auth";
 
 export default function Sidebar() {
   const location = useLocation();
@@ -15,7 +16,7 @@ export default function Sidebar() {
       <div className="flex h-full max-h-screen flex-col gap-2">
         <div className="flex h-14 items-center border-b px-4 lg:h-[60px] lg:px-6">
           <Link to="/" className="flex items-center gap-2 font-semibold">
-            <span className="">anonymous user</span>
+            <span className="">Zustack</span>
           </Link>
         </div>
         <div className="flex-1">
@@ -35,6 +36,17 @@ export default function Sidebar() {
               <Package className="h-4 w-4" />
               Tutorial
             </Link>
+
+              <button
+            onClick={() => {
+              useAuthStore.getState().logout();
+            }}
+                className="flex items-center gap-3 rounded-lg px-3 py-2 text-muted-foreground transition-all hover:text-primary"
+              >
+              <LogOutIcon className="w-4 h-4"/>
+                Logout
+              </button>
+
           </nav>
         </div>
       </div>
