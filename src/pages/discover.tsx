@@ -102,9 +102,10 @@ export default function Discover() {
             <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-3 2xl:grid-cols-4">
               {data.pages.flatMap((page) =>
                 page.data.map((c: any) => (
-                  <Link 
-                  to={`/image/${c.id}`}
-                  className="hover:cursor-pointer rounded-lg hover:bg-zinc-500/50 transition-colors duration-300 p-1">
+                  <Link
+                    to={`/image/${c.id}`}
+                    className="hover:cursor-pointer rounded-lg hover:bg-zinc-500/50 transition-colors duration-300 p-1"
+                  >
                     <img
                       className="rounded-lg"
                       src={`${import.meta.env.VITE_BACKEND_URL}${c.path}`}

@@ -89,6 +89,16 @@ export default function Login() {
                 </Button>
               </div>
             </form>
+            <p className="mt-4 text-sm text-muted-foreground">
+              Don't have an account?{" "}
+              <a
+                href="mailto:ai@zustack.com"
+                target="_blank"
+                className="underline underline-offset-4 hover:text-primary"
+              >
+                Request one here.
+              </a>
+            </p>
           </CardContent>
         </Card>
       </div>
