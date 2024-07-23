@@ -7,7 +7,7 @@ import {
 } from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { useMutation } from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import toast from "react-hot-toast";
 import { useAuthStore } from "@/store/auth";
 import { Label } from "@/components/ui/label";
@@ -18,6 +18,7 @@ import { login } from "@/api/users";
 
 export default function Login() {
   const { setToken } = useAuthStore();
+  const queryClient = useQueryClient();
 
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
@@ -26,6 +27,8 @@ export default function Login() {
     mutationFn: () => login(username, password),
     onSuccess: (response) => {
       setToken(response.token);
+      queryClient.invalidateQueries({ queryKey: ["user-images"] });
+      // user-images
     },
     onError: (response) => {
       //@ts-ignore
@@ -92,7 +95,7 @@ export default function Login() {
             <p className="mt-4 text-sm text-muted-foreground">
               Don't have an account?{" "}
               <a
-                href="mailto:ai@zustack.com"
+                href="mailto:contact@zustack.com"
                 target="_blank"
                 className="underline underline-offset-4 hover:text-primary"
               >

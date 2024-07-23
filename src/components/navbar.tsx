@@ -4,6 +4,7 @@ import {
   LogOutIcon,
   Package,
   ShoppingCart,
+  Pickaxe,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
@@ -40,7 +41,7 @@ export default function Navbar() {
               to="/generate-image"
               className={getLinkClass("/generate-image")}
             >
-              <ShoppingCart className="h-4 w-4" />
+              <Pickaxe className="h-4 w-4" />
               Generate image
             </Link>
             <Link to="/tutorial" className={getLinkClass("/tutorial")}>

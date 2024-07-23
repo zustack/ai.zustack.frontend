@@ -1,4 +1,4 @@
-import { Home as H, LogOutIcon, Package, ShoppingCart } from "lucide-react";
+import { Home as H, LogOutIcon, Package, Pickaxe, ShoppingCart } from "lucide-react";
 import { Link, useLocation } from "react-router-dom";
 import { useAuthStore } from "../store/auth";
 
@@ -31,7 +31,7 @@ export default function Sidebar() {
               to="/generate-image"
               className={getLinkClass("/generate-image")}
             >
-              <ShoppingCart className="h-4 w-4" />
+              <Pickaxe className="h-4 w-4" />
               Generate image
             </Link>
             <Link to="/tutorial" className={getLinkClass("/tutorial")}>
